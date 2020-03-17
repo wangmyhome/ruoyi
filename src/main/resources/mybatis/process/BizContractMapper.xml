@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.process.contract.mapper.BizContractMapper">
+
+    <resultMap type="BizContractVo" id="BizContractResult">
+        <result property="id"    column="id"    />
+        <result property="type"    column="type"    />
+        <result property="title"    column="title"    />
+        <result property="note"    column="note"    />
+        <result property="signTime"    column="sign_time"    />
+        <result property="company"    column="company"    />
+        <result property="instanceId"    column="instance_id"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="applyUser"    column="apply_user"    />
+        <result property="applyTime"    column="apply_time"    />
+        <result property="realityStartTime"    column="reality_start_time"    />
+        <result property="realityEndTime"    column="reality_end_time"    />
+    </resultMap>
+
+    <sql id="selectBizContractVo">
+        select id, type, title, note, sign_time, company, instance_id, create_by, create_time, update_by, update_time, apply_user, apply_time, reality_start_time, reality_end_time from biz_contract
+    </sql>
+
+    <select id="selectBizContractList" parameterType="BizContract" resultMap="BizContractResult">
+        <include refid="selectBizContractVo"/>
+        <where>
+            <if test="type != null  and type != ''"> and type = #{type}</if>
+            <if test="title != null  and title != ''"> and title = #{title}</if>
+            <if test="note != null  and note != ''"> and note = #{note}</if>
+            <if test="signTime != null "> and sign_time = #{signTime}</if>
+            <if test="company != null  and company != ''"> and company = #{company}</if>
+            <if test="instanceId != null  and instanceId != ''"> and instance_id = #{instanceId}</if>
+            <if test="createBy != null  and createBy != ''">and create_by = #{createBy}</if>
+            <if test="applyUser != null  and applyUser != ''"> and apply_user = #{applyUser}</if>
+            <if test="applyTime != null "> and apply_time = #{applyTime}</if>
+            <if test="realityStartTime != null "> and reality_start_time = #{realityStartTime}</if>
+            <if test="realityEndTime != null "> and reality_end_time = #{realityEndTime}</if>
+        </where>
+    </select>
+
+    <select id="selectBizContractById" parameterType="Long" resultMap="BizContractResult">
+        <include refid="selectBizContractVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertBizContract" parameterType="BizContractVo" useGeneratedKeys="true" keyProperty="id">
+        insert into biz_contract
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="type != null  and type != ''">type,</if>
+            <if test="title != null  and title != ''">title,</if>
+            <if test="note != null  and note != ''">note,</if>
+            <if test="signTime != null ">sign_time,</if>
+            <if test="company != null  and company != ''">company,</if>
+            <if test="instanceId != null  and instanceId != ''">instance_id,</if>
+            <if test="createBy != null  and createBy != ''">create_by,</if>
+            <if test="createTime != null ">create_time,</if>
+            <if test="updateBy != null  and updateBy != ''">update_by,</if>
+            <if test="updateTime != null ">update_time,</if>
+            <if test="applyUser != null  and applyUser != ''">apply_user,</if>
+            <if test="applyTime != null ">apply_time,</if>
+            <if test="realityStartTime != null ">reality_start_time,</if>
+            <if test="realityEndTime != null ">reality_end_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="type != null  and type != ''">#{type},</if>
+            <if test="title != null  and title != ''">#{title},</if>
+            <if test="note != null  and note != ''">#{note},</if>
+            <if test="signTime != null ">#{signTime},</if>
+            <if test="company != null  and company != ''">#{company},</if>
+            <if test="instanceId != null  and instanceId != ''">#{instanceId},</if>
+            <if test="createBy != null  and createBy != ''">#{createBy},</if>
+            <if test="createTime != null ">#{createTime},</if>
+            <if test="updateBy != null  and updateBy != ''">#{updateBy},</if>
+            <if test="updateTime != null ">#{updateTime},</if>
+            <if test="applyUser != null  and applyUser != ''">#{applyUser},</if>
+            <if test="applyTime != null ">#{applyTime},</if>
+            <if test="realityStartTime != null ">#{realityStartTime},</if>
+            <if test="realityEndTime != null ">#{realityEndTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateBizContract" parameterType="BizContractVo">
+        update biz_contract
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="type != null  and type != ''">type = #{type},</if>
+            <if test="title != null  and title != ''">title = #{title},</if>
+            <if test="note != null  and note != ''">note = #{note},</if>
+            <if test="signTime != null ">sign_time = #{signTime},</if>
+            <if test="company != null  and company != ''">company = #{company},</if>
+            <if test="instanceId != null  and instanceId != ''">instance_id = #{instanceId},</if>
+            <if test="createBy != null  and createBy != ''">create_by = #{createBy},</if>
+            <if test="createTime != null ">create_time = #{createTime},</if>
+            <if test="updateBy != null  and updateBy != ''">update_by = #{updateBy},</if>
+            <if test="updateTime != null ">update_time = #{updateTime},</if>
+            <if test="applyUser != null  and applyUser != ''">apply_user = #{applyUser},</if>
+            <if test="applyTime != null ">apply_time = #{applyTime},</if>
+            <if test="realityStartTime != null ">reality_start_time = #{realityStartTime},</if>
+            <if test="realityEndTime != null ">reality_end_time = #{realityEndTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBizContractById" parameterType="Long">
+        delete from biz_contract where id = #{id}
+    </delete>
+
+    <delete id="deleteBizContractByIds" parameterType="String">
+        delete from biz_contract where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>
